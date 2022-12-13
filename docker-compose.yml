@@ -15,6 +15,8 @@ services:
       - '/root/s-lemp/data/app:/var/www/html'
     depends_on:
       - mariadb
+    networks:
+      - backend
 
   nginx:
     image: nginx:latest
@@ -27,6 +29,9 @@ services:
     volumes:
       - '/root/s-lemp/data/app:/var/www/html'
       - '/root/s-lemp/data:/etc/nginx/conf.d'
+    networks:
+      - backend
+      - frontend
 
   mariadb:
     image: mariadb:latest
@@ -36,3 +41,5 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?err}
     volumes:
       - /root/s-lemp/data
+    networks:
+      - backend
