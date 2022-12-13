@@ -6,7 +6,7 @@ networks:
 
 services:
   php:
-    # image: 'php:7.2-fpm'
+#    image: 'php:fpm'
     build:
       context: /root/s-lemp/data
       dockerfile: php.Dockerfile
@@ -21,9 +21,9 @@ services:
   nginx:
     image: nginx:latest
     container_name: ${APP_NAME:?err}-nginx
-    ports:
-      - '80:80'
-      - '443:443'
+#    ports:
+#      - '800:80'
+#      - '4443:443'
     links:
       - 'php'
     volumes:
