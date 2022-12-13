@@ -8,11 +8,11 @@ services:
   php:
 #    image: 'php:fpm'
     build:
-      context: /root/s-lemp/data
+      context: ./data
       dockerfile: php.Dockerfile
     container_name: ${APP_NAME:?err}-php
     volumes:
-      - '/root/s-lemp/data/app:/var/www/html'
+      - './data/app:/var/www/html'
     depends_on:
       - mariadb
     networks:
@@ -27,8 +27,8 @@ services:
     links:
       - 'php'
     volumes:
-      - '/root/s-lemp/data/app:/var/www/html'
-      - '/root/s-lemp/data:/etc/nginx/conf.d'
+      - './data/app:/var/www/html'
+      - './data:/etc/nginx/conf.d'
     networks:
       - backend
       - frontend
@@ -40,6 +40,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?err}
     volumes:
-      - /root/s-lemp/data
+      - ./data
     networks:
       - backend
